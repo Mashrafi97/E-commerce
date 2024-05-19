@@ -47,7 +47,7 @@ const Header = () => {
     <header className='bg-[#F5F5F3] h-[100px] items-center flex'>
         <Container>
             <Flex>
-                <div className="lg:w-[36%] w-[20%] flex items-center relative px-3 lg:px-0">
+                <div className="lg:w-[36%] w-[20%] flex items-center relative px-3 lg:px-0 cursor-pointer">
                     <div ref={cartref} className="flex items-center">
                     <div className=""><FaRegChartBar/></div>
                     <p className='text-[#262626] text-[14px] font-normal pl-[7px] font-dm lg:opacity-[100] opacity-[0]'>Shop by Category</p>
@@ -65,13 +65,13 @@ const Header = () => {
                 </div>
                     }
                 </div>
-                <div className="lg:w-[39%] w-[50%]  text-center relative">
+                <div className="lg:w-[39%] w-[50%]  text-center relative cursor-pointer">
                     <input type="search" placeholder='Search Products' className='lg:h-[50px] h-[40px] w-full pl-[21px] pr-[46px] font-dm outline-none'/>
                     <div className="absolute top-[50%] translate-y-[-50%] right-[14px]">
                         <FaSearch/>
                     </div> 
                 </div>
-                <div ref={userref} className="lg:w-[25%] w-[30%] flex items-center lg:justify-end justify-center relative">
+                <div ref={userref} className="lg:w-[25%] w-[30%] flex items-center lg:justify-end justify-center relative cursor-pointer">
                     <div className="flex lg:pr-[41px] pr-[15px] items-center">
                     <FaUser/>
                     <FaCaretDown/>
