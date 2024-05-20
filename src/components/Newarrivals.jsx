@@ -1,6 +1,5 @@
 import { useContext } from 'react'
 import Container from './Container'
-import Flex from './Flex'
 import Arrivals from './Arrivals'
 import { apiData } from './ContextApi'
 import Slider from "react-slick";
