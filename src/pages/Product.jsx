@@ -172,7 +172,7 @@ const Poduct = () => {
             <Post allData={allData}/>
            </div>
            <div className="">
-            <PaginationArea pageNumber={pageNumber} paginate={paginate}/>
+            <PaginationArea pageNumber={pageNumber} paginate={paginate} currentPage={currentPage}/>
            </div>
             </div>  
         </Flex>

@@ -3,8 +3,10 @@ import Flex from '../components/Flex'
 import { useParams } from 'react-router-dom';
 import Container from '../components/Container';
 import img from "../assets/dmd.png"
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaRegStar} from "react-icons/fa";
+import { FaRegStarHalfStroke } from "react-icons/fa6";
 import { FaCaretDown , FaCaretUp } from "react-icons/fa";
+import axios from 'axios';
 
 
 
@@ -28,49 +30,51 @@ const ProductDetails = () => {
 
     let [singleData, setSingleData] = useState([]);
     let productId = useParams();
+
   
     let getData = () => {
-      axios
-        .get(`https://dummyjson.com/products/${productId.id}`)
-        .then((response) => {
+      axios.get(`https://dummyjson.com/products/${productId.id}`).then((response) => {
           setSingleData(response.data);
         });
     };
-    console.log(singleData);
+
+    useEffect(() => {
+        getData();
+      }, []);
+
+
+      let clientRating = Array.from({ length: 5 }, (_, index) => {
+        let ratingNumber = index + 0.5;
+
+        return( 
+        singleData.rating >= index + 1 ? <FaStar className="text-[#FFD881]" />
+        : singleData.rating > ratingNumber ? <FaRegStarHalfStroke className="text-[#FFD881]"/> :  <FaRegStar className="text-[#FFD881]"/>
+        )
+      });
+
   return (
     <>
     <div className="mt-[40px]">
         <Container>
             <Flex className="flex-wrap justify-between">
-                <div className="w-[48.6%]">
-                    <img src={img} alt="" />
+                {singleData?.images?.map((item)=>(
+                    <div className="w-[48.6%] h-[784px] border-[1px] border-[#f2f2f2] mb-[40px]">
+                    <img src={item} alt="" />
                 </div>
-                <div className="w-[48.6%]">
-                    <img src={img} alt="" />
-                </div>
-                <div className="w-[48.6%] mt-[40px]">
-                    <img src={img} alt="" />
-                </div>
-                <div className="w-[48.6%] mt-[40px]">
-                    <img src={img} alt="" />
-                </div>
+                ))}
             </Flex>
             <div className="w-[780px]">
                 <h2 className='text-[#262626] font-dm lg:text-[39px] text-[20px] lg:font-bold font-medium pt-[30px]'>Product</h2>
                 <div className="flex pt-[8px]">
                     <div className="text-[#FFD881] flex items-center text-[14px] gap-x-[2px]">
-                    <FaStar/>
-                    <FaStar/>
-                    <FaStar/>
-                    <FaStar/>
-                    <FaStar/>
+                    {clientRating}
                     </div>
                     <div className="pl-[25px]">
                         <span className='text-[#767676] font-dm text-[14px] font-normal'>1 Review</span>
                     </div>
                 </div>
                 <div className="border-b-[1px] border-[#F0F0F0] pb-[24px]  pt-[20px]">
-                        <span className='text-[#262626] font-dm text-[20px] font-bold'>$44.00</span>
+                        <span className='text-[#262626] font-dm text-[20px] font-bold'>${singleData.price}</span>
                 </div>
                 <div className=" mt-[31px] flex">
                         <span className='text-[#262626] font-dm text-[16px] font-bold mr-[53px]'>COLOR:</span>
@@ -88,7 +92,7 @@ const ProductDetails = () => {
               <h5 ref={showSortRef} className='text-[#767676] font-dm text-[16px] font-normal ml-[14px] pt-[3px] pb-[3px] pl-[21px] inline-block border-[#F0F0F0] border-[1px]'>S {showSort == true ? <FaCaretUp className='inline-block ml-[76px] mr-[21px]'/> : <FaCaretDown className='inline-block ml-[76px] mr-[21px]'/>} </h5>
               {showSort && 
                 <ul className='bg-[#F0F0F0] text-center absolute top-[32px] left-[14px] right-0 z-50'>
-                <li>M</li>
+                <li className='duration-[0.3s] ease-in-out border-[1px] border-[#f6f6f6] hover:border-[1px] hover:border-[#c6c6c6] cursor-pointer p-[8px]'>M</li>
                 <li className='duration-[0.3s] ease-in-out border-[1px] border-[#f6f6f6] hover:border-[1px] hover:border-[#c6c6c6] cursor-pointer p-[8px]'>L</li>
                 <li className='duration-[0.3s] ease-in-out border-[1px] border-[#f6f6f6] hover:border-[1px] hover:border-[#c6c6c6] cursor-pointer p-[8px]'>XL</li>
                 <li className='duration-[0.3s] ease-in-out border-[1px] border-[#f6f6f6] hover:border-[1px] hover:border-[#c6c6c6] cursor-pointer p-[8px]'>XXL</li>
