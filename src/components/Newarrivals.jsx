@@ -52,7 +52,7 @@ const Newarrivals = () => {
             </div>
                 <Slider {...settings}>
                 {data.map((item)=>(
-                    <Link to="/shoptwo">
+                    <Link to="/product">
                       <Arrivals item={item}/>
                     </Link>
                 ))}
