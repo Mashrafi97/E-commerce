@@ -13,7 +13,7 @@ const PaginationArea = ({pageNumber,paginate,currentPage}) => {
       {pageNumber.map((item , i)=>(
       <li onClick={()=>paginate(item)} className={currentPage == i + 1 ? "bg-[#262626] border-[#262626] text-[#ffff]" : "bg-white border border-[#F0F0F0] text-[#767676]"}>
         <a 
-          className="flex items-center justify-center px-3 h-8 leading-tight text-[14px] font-normal font-dm"
+          className="flex items-center justify-center lg:px-3 px-[10px] h-8 leading-tight text-[14px] font-normal font-dm"
         >
           {item + 1}
         </a>

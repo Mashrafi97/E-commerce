@@ -63,15 +63,15 @@ const Banner = () => {
     
 <div className="bg-[#FFFFFF] mt-[10px] border-b-[1px] border-[#F0F0F0] px-3 lg:px-0">
 <Container>
-  <Flex className="justify-between pb-[20px]">
+  <Flex className="pb-[20px] flex justify-between">
     <div className="flex items-center">
-      <h4 className='flex items-center lg:gap-[15px] gap-[8px] text-[#6D6D6D] font-dm lg:text-[16px] text-[14px] font-normal leading-auto'><span className='text-[#262626]'>2</span>Two years warranty</h4>
+      <h4 className='flex items-center lg:gap-[15px] gap-[8px] text-[#6D6D6D] font-dm lg:text-[16px] text-[12px] font-normal'><span className='text-[#262626]'>2</span>Two years warranty</h4>
     </div>
     <div className="flex items-center">
-      <h4 className='flex items-center lg:gap-[15px] gap-[8px] text-[#6D6D6D] font-dm lg:text-[16px] text-[14px] font-normal leading-auto'><i className='text-[#262626]'><FaTruck/></i> Free shipping</h4>
+      <h4 className='flex items-center lg:gap-[15px] gap-[8px] text-[#6D6D6D] font-dm lg:text-[16px] text-[12px] font-normal'><i className='text-[#262626]'><FaTruck/></i> Free shipping</h4>
     </div>
     <div className="flex items-center">
-      <h4 className='flex items-center lg:gap-[15px] gap-[8px] text-[#6D6D6D] font-dm lg:text-[16px] text-[14px] font-normal leading-auto'><i className='text-[#262626]'><SlReload/></i>Return policy in 30 days</h4>
+      <h4 className='flex items-center lg:gap-[15px] gap-[8px] text-[#6D6D6D] font-dm lg:text-[16px] text-[12px] font-normal'><i className='text-[#262626]'><SlReload/></i>Return policy in 30 days</h4>
     </div>
   </Flex>
 </Container>

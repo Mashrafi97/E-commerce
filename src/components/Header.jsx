@@ -44,7 +44,7 @@ const Header = () => {
     },[cartShow , userShow , shopShow]) 
 
   return (
-    <header className='bg-[#F5F5F3] h-[100px] items-center flex'>
+    <header className='bg-[#F5F5F3] lg:h-[100px] h-[70px] items-center flex'>
         <Container>
             <Flex>
                 <div className="lg:w-[36%] w-[20%] flex items-center relative px-3 lg:px-0 cursor-pointer">
@@ -66,7 +66,7 @@ const Header = () => {
                     }
                 </div>
                 <div className="lg:w-[39%] w-[50%]  text-center relative cursor-pointer">
-                    <input type="search" placeholder='Search Products' className='lg:h-[50px] h-[40px] w-full pl-[21px] pr-[46px] font-dm outline-none'/>
+                    <input type="search" placeholder='Search Products' className='lg:h-[50px] h-[40px] w-full lg:pl-[21px] pl-[17px] lg:pr-[46px] pr-[32px] font-dm outline-none placeholder:text-[14px] placeholder:lg:text-[16px]'/>
                     <div className="absolute top-[50%] translate-y-[-50%] right-[14px]">
                         <FaSearch/>
                     </div> 
