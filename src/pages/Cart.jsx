@@ -1,14 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Container from '../components/Container'
-import Flex from '../components/Flex'
 import { FaAngleRight } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import choshma from "../assets/choshma.png"
 import { FaCaretDown , FaCaretUp } from "react-icons/fa";
+import { useSelector } from 'react-redux';
 
 
 
 const Cart = () => {
+  let data = useSelector((state)=>state.product)
+  
 
   let [showSortSize , setShowSortSize] = useState(false);
   let showSortSizeRef = useRef();

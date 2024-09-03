@@ -14,21 +14,6 @@ const Poduct = () => {
     let data = useContext(apiData)
     let [currentPage, setCurrentPage] = useState(1)
     let [perPage, setPerPage] = useState(12)
-
-    let lastpage = currentPage * perPage
-    let firstpage = lastpage - perPage
-    let allData = data.slice(firstpage, lastpage)
-
-    let pageNumber = []
-    for(let i = 0; i < Math.ceil(data.length / perPage); i++){
-        pageNumber.push(i)
-        
-    }
-
-    let paginate = (pageNumber) =>{
-        setCurrentPage(pageNumber + 1);
-    }
-
     let [show , setShow] = useState(false)
     let [catShow , setCatShow] = useState(false)
     let [catShowOne , setCatShowOne] = useState(false)
@@ -37,6 +22,23 @@ const Poduct = () => {
     let showRef = useRef()
     let showNumberRef = useRef()
     let [showNumber , setShowNumber] = useState(false)
+    let [category,setCategory] = useState([])
+    let [categorySearchFilter,setCategorySearchFilter] = useState([])
+    let [multiList, setMultiList] = useState("")
+
+    let lastpage = currentPage * perPage
+    let firstpage = lastpage - perPage
+    let allData = data.slice(firstpage, lastpage)
+
+    let pageNumber = []
+    for(let i = 0; i < Math.ceil(categorySearchFilter.length > 0 ? categorySearchFilter : data.length / perPage); i++){
+        pageNumber.push(i)
+        
+    }
+
+    let paginate = (pageNumber) =>{
+        setCurrentPage(pageNumber + 1);
+    }
 
     useEffect(()=>{
       document.addEventListener("click",(e)=>{
@@ -57,6 +59,22 @@ const Poduct = () => {
       })
   },[show , showNumber]) 
 
+
+  let handleList = () =>{
+    setMultiList("activeList");
+  }
+
+  useEffect(()=>{
+    setCategory([...new Set(data.map((item)=>item.category))])
+  },[data])
+  
+  let handleSubCate = (citem)=>{
+    let categoryFilter = data.filter((item)=> item.category == citem)
+    setCategorySearchFilter(categoryFilter)
+  }
+  
+  
+
   return (
     <>
     <section className=''>
@@ -70,7 +88,10 @@ const Poduct = () => {
           <div className="lg:pt-[130px] pt-[45px]">
             <h4 className='text-[#262626] font-dm lg:text-[20px] text-[18px] font-bold leading-auto'>Shop by Category</h4>
             <ul>
-              <li onClick={()=>setCatShowOne(!catShowOne)} className='text-[#767676] font-dm lg:text-[16px] text-[14px] font-normal lg:leading-[30px] lg:pt-[35px] pt-[15px] border-[#F0F0F0] border-b-[1px] w-full lg:pb-[16px] pb-[14px]'>Category 1 {catShowOne == true ? <FaMinus className='text-[#262626] lg:text-[14px] text-[12px] lg:ml-[284px] ml-[82px] inline-block'/> : <FaPlus className='text-[#262626] lg:text-[14px] text-[12px] lg:ml-[284px] ml-[82px] inline-block'/>}
+            {category.map((item)=>(
+              <li onClick={()=>handleSubCate(item)} className='cursor-pointer text-[#767676] font-dm lg:text-[16px] text-[14px] font-normal lg:leading-[30px] lg:pt-[35px] pt-[15px] border-[#F0F0F0] border-b-[1px] w-full lg:pb-[16px] pb-[14px] capitalize'>{item}</li>
+            ))}
+              {/* <li onClick={()=>setCatShowOne(!catShowOne)} className='text-[#767676] font-dm lg:text-[16px] text-[14px] font-normal lg:leading-[30px] lg:pt-[35px] pt-[15px] border-[#F0F0F0] border-b-[1px] w-full lg:pb-[16px] pb-[14px]'>Category 1 {catShowOne == true ? <FaMinus className='text-[#262626] lg:text-[14px] text-[12px] lg:ml-[284px] ml-[82px] inline-block'/> : <FaPlus className='text-[#262626] lg:text-[14px] text-[12px] lg:ml-[284px] ml-[82px] inline-block'/>}
               {catShowOne &&(
               <ul className='bg-[#262626] mt-[12px]'>
                 <li className='pl-[10px] text-[#ffffff] font-dm lg:text-[16px] text-[14px] font-normal lg:leading-[30px] border-[#343434] border-b-[1px] w-full pb-[16px] pt-[10px] cursor-pointer'>Rangamati</li>
@@ -90,7 +111,7 @@ const Poduct = () => {
               )}
               </li>
               <li className='text-[#767676] font-dm lg:text-[16px] text-[14px] font-normal leading-[30px] border-[#F0F0F0] border-b-[1px] w-full lg:pb-[16px] pb-[10px] lg:pt-[8px] pt-[8px] cursor-pointer'>Category 4</li>
-              <li className='text-[#767676] font-dm lg:text-[16px] text-[14px] font-normal leading-[30px] border-[#F0F0F0] border-b-[1px] w-full lg:pb-[16px] pb-[12px] pt-[10px] cursor-pointer'>Category 5</li>
+              <li className='text-[#767676] font-dm lg:text-[16px] text-[14px] font-normal leading-[30px] border-[#F0F0F0] border-b-[1px] w-full lg:pb-[16px] pb-[12px] pt-[10px] cursor-pointer'>Category 5</li> */}
             </ul>
           </div>
 
@@ -141,8 +162,8 @@ const Poduct = () => {
       <div className="lg:w-[73%] w-[47%] lg:mt-[351px] mt-[55px]">
           <div className="flex flex-wrap">
             <div className="pb-[50px] lg:block hidden">
-            <a className='cursor-pointer pt-[10px] pl-[14px] pb-[13px] pr-[14px] bg-[#262626] lg:text-[22px] text-[18px] text-[white] hover:bg-[#F0F0F0] hover:text-black duration-[0.7s] ease-in-out'><IoGrid className='inline-block'/></a>
-            <a className='cursor-pointer lg:ml-[20px] ml-[10px] pt-[10px] pl-[14px] pb-[13px] pr-[14px] bg-[#F0F0F0] lg:text-[22px] text-[18px] text-[#737373] hover:bg-[#262626] hover:text-[white] duration-[0.7s] ease-in-out'><TfiMenuAlt className='inline-block'/></a>
+            <a onClick={()=>setMultiList("")} className={`cursor-pointer pt-[10px] pl-[14px] pb-[13px] pr-[14px] bg-[#262626] lg:text-[22px] text-[18px] text-[white] hover:bg-[#F0F0F0] hover:text-black duration-[0.7s] ease-in-out ${multiList == "activeList" ? "text-[black] bg-[#F0F0F0]" : "text-[white] bg-[#000]"}`}><IoGrid className='inline-block'/></a>
+            <a onClick={handleList } className={`cursor-pointer lg:ml-[20px] ml-[10px] pt-[10px] pl-[14px] pb-[13px] pr-[14px] bg-[#F0F0F0] lg:text-[22px] text-[18px] text-[#737373] hover:bg-[#262626] hover:text-[white] duration-[0.7s] ease-in-out ${multiList == "activeList" ? "text-[white] bg-[#000]" : "text-[black] bg-[#F0F0F0]" }`}><TfiMenuAlt className='inline-block'/></a>
             </div>
             <div className="lg:w-[80%] lg:flex justify-end">
               <div className="relative">
@@ -169,8 +190,8 @@ const Poduct = () => {
               </div>
             </div>
           </div>
-           <div className="flex justify-between flex-wrap">
-            <Post allData={allData}/>
+           <div className="">
+            <Post allData={allData} categorySearchFilter={categorySearchFilter} multiList={multiList}/>
            </div>
            <div className="">
             <PaginationArea pageNumber={pageNumber} paginate={paginate} currentPage={currentPage}/>

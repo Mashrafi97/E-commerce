@@ -8,6 +8,7 @@ import { FaCaretDown } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import img from "../assets/img.png"
 import { IoClose } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
@@ -79,11 +80,22 @@ const Header = () => {
                     {userShow &&
                     <div className="z-50 absolute top-[58px] right-[58px] w-[200px] border-[1px] grid grid-cols-1 divide-y divide-[#5c5757]">
                     <div className="bg-[#2B2B2B] h-[50px] hover:bg-white duration-[0.7s] ease-in-out">
-                        <a className='text-[#fff] text-[14px] font-bold font-dm hover:font-normal hover:text-[#262626] w-full h-full  justify-center items-center flex' href="#">My Account</a>
+                        <a className='text-[#fff] text-[14px] font-bold font-dm hover:font-normal hover:text-[#262626] w-full h-full  justify-center items-center inline-block flex'>My Account</a>
                     </div>
+                    <Link className='inline' to="/signup">
                     <div className="bg-white h-[50px] hover:bg-[#2B2B2B] duration-[0.7s] ease-in-out">
-                        <a className='text-[#262626] text-[14px] font-normal font-dm hover:font-bold hover:text-white  w-full h-full  justify-center items-center flex' href="#">Log Out</a>
+                        <a className='text-[#262626] text-[14px] font-normal font-dm hover:font-bold hover:text-white  w-full h-full  justify-center items-center flex'>
+                            Signup
+                        </a>
                     </div>
+                    </Link>
+                    <Link to="/login">
+                    <div className="hover:bg-white h-[50px] bg-[#2B2B2B] duration-[0.7s] ease-in-out">
+                        <a className='hover:text-[#262626] text-[14px] font-normal font-dm hover:font-bold text-white  w-full h-full  justify-center items-center flex'>
+                            Login
+                        </a>
+                    </div>
+                    </Link>
                 </div>
                     }
                     <div ref={shopref} className="relative">
